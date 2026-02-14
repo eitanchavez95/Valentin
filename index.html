@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>¿Quieres ser mi San Valentín?</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: #ffe6f0;
+        overflow: hidden;
+    }
+
+    h1 {
+        margin-top: 40px;
+        font-size: 2.5em;
+        color: #d6006e;
+    }
+
+    img {
+        width: 250px;
+        margin: 20px 0;
+    }
+
+    .buttons {
+        margin-top: 20px;
+    }
+
+    button {
+        padding: 15px 30px;
+        font-size: 18px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 10px;
+        transition: all 0.3s ease;
+    }
+
+    #yesBtn {
+        background-color: #ff4da6;
+        color: white;
+    }
+
+    #noBtn {
+        background-color: #999;
+        color: white;
+    }
+
+    .heart {
+        position: fixed;
+        color: red;
+        font-size: 20px;
+        animation: fall 3s linear infinite;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(-10vh); opacity: 1; }
+        100% { transform: translateY(110vh); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<h1>¿Quieres ser mi San Valentín?</h1>
+
+<img id="catGif" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Gatito enamorado">
+
+<div class="buttons">
+    <button id="yesBtn">Sí</button>
+    <button id="noBtn">No</button>
+</div>
+
+<script>
+let yesBtn = document.getElementById("yesBtn");
+let noBtn = document.getElementById("noBtn");
+let catGif = document.getElementById("catGif");
+
+let scale = 1;
+let noClicks = 0;
+
+const noTexts = [
+    "¿Estás segura?",
+    "Yo sé que sí 😏",
+    "Piénsalo otra vez...",
+    "ni tantito??...",
+    "Última oportunidad..."
+];
+
+noBtn.addEventListener("click", () => {
+    if (noClicks < noTexts.length) {
+        noBtn.textContent = noTexts[noClicks];
+        scale += 0.3;
+        yesBtn.style.transform = `scale(${scale})`;
+        noClicks++;
+    }
+});
+
+yesBtn.addEventListener("click", () => {
+    startHearts();
+    catGif.src = "https://media.giphy.com/media/l2QDM9Jnim1YVILXa/giphy.gif";
+});
+
+function startHearts() {
+    for (let i = 0; i < 50; i++) {
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 2 + 2) + "s";
+        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 3000);
+    }
+}
+</script>
+
+</body>
+</html>
