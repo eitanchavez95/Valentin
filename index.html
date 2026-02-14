@@ -2,7 +2,9 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>¿Quieres ser mi San Valentín?</title>
+
 <style>
     body {
         margin: 0;
@@ -10,30 +12,36 @@
         text-align: center;
         background: #ffe6f0;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     h1 {
-        margin-top: 40px;
-        font-size: 2.5em;
+        margin-top: 30px;
+        font-size: 3em;
         color: #d6006e;
+        padding: 0 15px;
     }
 
     img {
-        width: 250px;
-        margin: 20px 0;
+        width: 80%;
+        max-width: 500px;
+        margin: 25px 0;
+        transition: 0.5s ease;
     }
 
     .buttons {
-        margin-top: 20px;
+        margin-top: 10px;
     }
 
     button {
-        padding: 15px 30px;
-        font-size: 18px;
+        padding: 20px 40px;
+        font-size: 24px;
         border: none;
-        border-radius: 10px;
+        border-radius: 15px;
         cursor: pointer;
-        margin: 10px;
+        margin: 15px;
         transition: all 0.3s ease;
     }
 
@@ -43,15 +51,14 @@
     }
 
     #noBtn {
-        background-color: #999;
+        background-color: #888;
         color: white;
     }
 
     .heart {
         position: fixed;
         color: red;
-        font-size: 20px;
-        animation: fall 3s linear infinite;
+        animation: fall linear infinite;
     }
 
     @keyframes fall {
@@ -64,7 +71,9 @@
 
 <h1>¿Quieres ser mi San Valentín?</h1>
 
-<img id="catGif" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Gatito enamorado">
+<img id="catGif"
+src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"
+alt="Gatito enamorado">
 
 <div class="buttons">
     <button id="yesBtn">Sí</button>
@@ -83,14 +92,16 @@ const noTexts = [
     "¿Estás segura?",
     "Yo sé que sí 😏",
     "Piénsalo otra vez...",
-    "ni tantito??...",
+    "Ni tantito?? 🥺",
+    "Ándale di que sí 😌",
+    "Prometo chocolates 🍫",
     "Última oportunidad..."
 ];
 
 noBtn.addEventListener("click", () => {
     if (noClicks < noTexts.length) {
         noBtn.textContent = noTexts[noClicks];
-        scale += 0.3;
+        scale += 0.4;
         yesBtn.style.transform = `scale(${scale})`;
         noClicks++;
     }
@@ -102,18 +113,18 @@ yesBtn.addEventListener("click", () => {
 });
 
 function startHearts() {
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 120; i++) {
         let heart = document.createElement("div");
         heart.classList.add("heart");
         heart.innerHTML = "❤️";
         heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 40 + 20) + "px";
         heart.style.animationDuration = (Math.random() * 2 + 2) + "s";
-        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
         document.body.appendChild(heart);
 
         setTimeout(() => {
             heart.remove();
-        }, 3000);
+        }, 4000);
     }
 }
 </script>
